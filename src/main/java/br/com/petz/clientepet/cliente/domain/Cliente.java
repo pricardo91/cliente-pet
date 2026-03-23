@@ -1,4 +1,4 @@
-package br.com.petz.clientepet.cliente;
+package br.com.petz.clientepet.cliente.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
