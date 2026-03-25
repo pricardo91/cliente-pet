@@ -18,6 +18,6 @@ public class ClienteController implements ClienteAPI {
         log.info("[inicia] {} - postCliente", getClass().getSimpleName());
         ClienteResponse clienteCriado = clienteService.criarCliente(clienteRequest);
         log.info("[finaliza] {} - postCliente", getClass().getSimpleName());
-        return null;
+        return clienteCriado;
     }
 }
