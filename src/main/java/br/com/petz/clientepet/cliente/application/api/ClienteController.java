@@ -1,6 +1,7 @@
 package br.com.petz.clientepet.cliente.application.api;
 
 import br.com.petz.clientepet.cliente.application.service.ClienteService;
+import br.com.petz.clientepet.cliente.domain.Cliente;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,8 +26,9 @@ public class ClienteController implements ClienteAPI {
     @Override
     public List<ClienteListResponse> getTodosClientes() {
         log.info("[inicia] {} - getTodosClientes", getClass().getSimpleName());
+        List<ClienteListResponse> clientes = clienteService.buscaTodosClientes();
         log.info("[finaliza] {} - getTodosClientes", getClass().getSimpleName());
-        return List.of();
+        return clientes;
     }
 
 
