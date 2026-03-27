@@ -2,8 +2,8 @@ package br.com.petz.clientepet.cliente.application.service;
 
 import br.com.petz.clientepet.cliente.application.api.ClienteRequest;
 import br.com.petz.clientepet.cliente.application.api.ClienteResponse;
-import br.com.petz.clientepet.cliente.application.repository.ClienteRepository;
 import br.com.petz.clientepet.cliente.domain.Cliente;
+import br.com.petz.clientepet.cliente.infrastructure.ClienteInfraRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class ClienteApplicationService implements ClienteService {
-    private final ClienteRepository clienteRepository;
+    private final ClienteInfraRepository clienteRepository;
 
     @Override
     public ClienteResponse criarCliente(ClienteRequest clienteRequest) {
         log.info("[start] {} - criarCliente", getClass().getSimpleName());
 
-        Cliente cliente = clienteRepository.save(new Cliente(clienteRequest));
+        Cliente cliente = clienteRepository.salva(new Cliente(clienteRequest));
 
         //ClienteResponse clienteResponse = new ClienteResponse(cliente.getIdCliente());
         log.info("[end] {} - criarCliente", getClass().getSimpleName());
