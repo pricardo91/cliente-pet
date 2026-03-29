@@ -1,12 +1,13 @@
 package br.com.petz.clientepet.cliente.application.api;
 
 import br.com.petz.clientepet.cliente.application.service.ClienteService;
-import br.com.petz.clientepet.cliente.domain.Cliente;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -29,6 +30,14 @@ public class ClienteController implements ClienteAPI {
         List<ClienteListResponse> clientes = clienteService.buscaTodosClientes();
         log.info("[finaliza] {} - getTodosClientes", getClass().getSimpleName());
         return clientes;
+    }
+
+    @Override
+    public ClienteDetalhadoResponse getClienteId(UUID idCliente) {
+        log.info("[start] {} - getClienteId", getClass().getSimpleName());
+        log.info("[idCliente] {}", idCliente);
+        log.info("[end] {} - getClienteId", getClass().getSimpleName());
+        return null;
     }
 
 
