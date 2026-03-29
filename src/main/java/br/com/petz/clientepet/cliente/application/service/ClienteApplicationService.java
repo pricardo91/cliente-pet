@@ -1,5 +1,6 @@
 package br.com.petz.clientepet.cliente.application.service;
 
+import br.com.petz.clientepet.cliente.application.api.ClienteDetalhadoResponse;
 import br.com.petz.clientepet.cliente.application.api.ClienteListResponse;
 import br.com.petz.clientepet.cliente.application.api.ClienteRequest;
 import br.com.petz.clientepet.cliente.application.api.ClienteResponse;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -20,9 +22,7 @@ public class ClienteApplicationService implements ClienteService {
     @Override
     public ClienteResponse criarCliente(ClienteRequest clienteRequest) {
         log.info("[start] {} - criarCliente", getClass().getSimpleName());
-
         Cliente cliente = clienteRepository.salva(new Cliente(clienteRequest));
-
         log.info("[end] {} - criarCliente", getClass().getSimpleName());
         return ClienteResponse.builder()
                 .idCliente(cliente.getIdCliente())
@@ -35,5 +35,13 @@ public class ClienteApplicationService implements ClienteService {
         List<Cliente> clientes = clienteRepository.buscaTodosClientes();
         log.info("[end] {} - buscaTodosClientes", getClass().getSimpleName());
         return ClienteListResponse.converte(clientes);
+    }
+
+    @Override
+    public ClienteDetalhadoResponse buscaClientePorId(UUID idCliente) {
+        log.info("[start] {} - buscaClientePorId", getClass().getSimpleName());
+        log.info("[idCliente] Service - {}", idCliente);
+        log.info("[end] {} - buscaClientePorId", getClass().getSimpleName());
+        return null;
     }
 }
