@@ -41,7 +41,8 @@ public class ClienteApplicationService implements ClienteService {
     public ClienteDetalhadoResponse buscaClientePorId(UUID idCliente) {
         log.info("[start] {} - buscaClientePorId", getClass().getSimpleName());
         log.info("[idCliente] Service - {}", idCliente);
+        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
         log.info("[end] {} - buscaClientePorId", getClass().getSimpleName());
-        return null;
+        return new ClienteDetalhadoResponse(cliente);
     }
 }
