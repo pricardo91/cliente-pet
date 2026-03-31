@@ -2,8 +2,10 @@ package br.com.petz.clientepet.cliente.infrastructure;
 
 import br.com.petz.clientepet.cliente.application.repository.ClienteRepository;
 import br.com.petz.clientepet.cliente.domain.Cliente;
+import br.com.petz.clientepet.handler.ApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,7 +38,9 @@ public class ClienteInfraRepository implements ClienteRepository {
     public Cliente buscaClientePorId(UUID idCliente) {
         log.info("[start] {} - buscaClientePorId", getClass().getSimpleName());
         Cliente cliente = clienteSpringDataJPARepository.findById(idCliente)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado ou não cadastrado"));
+                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND,
+                        "Recurso não encontrado ou não existente",
+                        "Cliente não encontrado para o id: " + idCliente));
         log.info("[end] {} - buscaClientePorId", getClass().getSimpleName());
         return cliente;
     }
