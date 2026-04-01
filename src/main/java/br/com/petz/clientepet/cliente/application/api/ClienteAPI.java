@@ -1,7 +1,6 @@
 package br.com.petz.clientepet.cliente.application.api;
 
 import jakarta.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,4 +21,8 @@ public interface ClienteAPI {
     @GetMapping("/{idCliente}")
     @ResponseStatus(HttpStatus.OK)
     ClienteDetalhadoResponse getClienteId(@PathVariable UUID idCliente);
+
+    @DeleteMapping("/{idCliente}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deleteClienteId(@PathVariable UUID idCliente);
 }
