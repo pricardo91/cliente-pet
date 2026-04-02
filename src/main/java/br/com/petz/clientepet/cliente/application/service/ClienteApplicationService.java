@@ -1,9 +1,6 @@
 package br.com.petz.clientepet.cliente.application.service;
 
-import br.com.petz.clientepet.cliente.application.api.ClienteDetalhadoResponse;
-import br.com.petz.clientepet.cliente.application.api.ClienteListResponse;
-import br.com.petz.clientepet.cliente.application.api.ClienteRequest;
-import br.com.petz.clientepet.cliente.application.api.ClienteResponse;
+import br.com.petz.clientepet.cliente.application.api.*;
 import br.com.petz.clientepet.cliente.domain.Cliente;
 import br.com.petz.clientepet.cliente.infrastructure.ClienteInfraRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,11 +35,11 @@ public class ClienteApplicationService implements ClienteService {
     }
 
     @Override
-    public ClienteDetalhadoResponse buscaClientePorId(UUID idCliente) {
-        log.info("[start] {} - buscaClientePorId", getClass().getSimpleName());
+    public ClienteDetalhadoResponse buscaCliente(UUID idCliente) {
+        log.info("[start] {} - buscaCliente", getClass().getSimpleName());
         log.info("[idCliente] Service - {}", idCliente);
         Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
-        log.info("[end] {} - buscaClientePorId", getClass().getSimpleName());
+        log.info("[end] {} - buscaCliente", getClass().getSimpleName());
         return new ClienteDetalhadoResponse(cliente);
     }
 
@@ -52,5 +49,15 @@ public class ClienteApplicationService implements ClienteService {
         Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
         clienteRepository.deletaCliente(cliente);
         log.info("[end] {} - deletaClientePorId", getClass().getSimpleName());
+    }
+
+    @Override
+    public void patchAtualizaCliente(UUID idCliente, ClienteUpdateRequest clienteUpdateRequest) {
+        log.info("[start] {} - patchAtualizaCliente", getClass().getSimpleName());
+        Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+        cliente.altera(clienteUpdateRequest);
+        clienteRepository.salva(cliente);
+        log.info("[cliente] - {}", cliente.getIdCliente());
+        log.info("[end] {} - patchAtualizaCliente", getClass().getSimpleName());
     }
 }

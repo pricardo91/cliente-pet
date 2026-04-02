@@ -35,7 +35,7 @@ public class ClienteController implements ClienteAPI {
     @Override
     public ClienteDetalhadoResponse getClienteId(UUID idCliente) {
         log.info("[start] {} - getClienteId", getClass().getSimpleName());
-        ClienteDetalhadoResponse clienteDetalhado = clienteService.buscaClientePorId(idCliente);
+        ClienteDetalhadoResponse clienteDetalhado = clienteService.buscaCliente(idCliente);
         log.info("[end] {} - getClienteId", getClass().getSimpleName());
         return clienteDetalhado;
     }
@@ -45,6 +45,13 @@ public class ClienteController implements ClienteAPI {
         log.info("[start] {} - deleteClienteId", getClass().getSimpleName());
         clienteService.deletaClientePorId(idCliente);
         log.info("[end] {} - deleteClienteId", getClass().getSimpleName());
+    }
+
+    @Override
+    public void atualizaCliente(UUID idCliente, ClienteUpdateRequest clienteUpdateRequest) {
+        log.info("[start] {} - atualizaCliente", getClass().getSimpleName());
+        clienteService.patchAtualizaCliente(idCliente, clienteUpdateRequest);
+        log.info("[end] {} - atualizaCliente", getClass().getSimpleName());
     }
 
 
