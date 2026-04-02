@@ -17,6 +17,13 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Entity
+@Table(
+        name = "cliente",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "UK_CLIENTE_EMAIL", columnNames = "email"),
+                @UniqueConstraint(name = "UK_CLIENTE_CPF", columnNames = "cpf")
+        }
+)
 public class Cliente {
 
     @Id
@@ -27,7 +34,7 @@ public class Cliente {
     private String nomeCompleto;
     @Email
     @NotBlank
-    @Column(unique = true)
+    @Column(name = "email")
     private String email;
     @NotBlank
     private String celular;
@@ -36,7 +43,7 @@ public class Cliente {
     @NotNull
     private LocalDate dataNascimento;
     @CPF
-    @Column(unique = true)
+    @Column(name = "cpf")
     private String cpf;
 
     @NotNull

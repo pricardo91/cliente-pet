@@ -2,6 +2,7 @@ package br.com.petz.clientepet.handler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -58,6 +59,34 @@ public class RestResponseEntityExceptionHandler {
                 .path(request.getMethod() + ": " + request.getRequestURI())
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorApiResponse);
+
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorApiResponse> handlerDataIntegrityViolationException(DataIntegrityViolationException ex, HttpServletRequest request) {
+        log.error("[erro] - {} - {}", ex.getClass().getSimpleName(), ex.getMessage());
+
+        Throwable root = ex.getRootCause();
+        String mensagem = root != null ? root.getMessage() : "";
+        String mensagemTratada = null;
+
+        if (mensagem.contains("UK_CLIENTE_EMAIL")){
+            mensagemTratada = "Email já cadastrado!";
+        }
+        else if (mensagem.contains("UK_CLIENTE_CPF")){
+            mensagemTratada = "Cpf já cadastrado!";
+        }else {
+            mensagemTratada = "Dados duplicados";
+        }
+
+        ErrorApiResponse errorApiResponse = ErrorApiResponse.builder()
+                .status(HttpStatus.CONFLICT.value())
+                .message(mensagemTratada)
+                .error(HttpStatus.CONFLICT.getReasonPhrase())
+                .description("Existem dados duplicados no request!")
+                .path(request.getMethod() + ": " + request.getRequestURI())
+                .build();
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorApiResponse);
 
     }
 
