@@ -25,10 +25,13 @@ public class Pet {
     @Enumerated(EnumType.STRING)
     private Porte porte;
     @Enumerated(EnumType.STRING)
+    @NotBlank
     private TipoPet tipo;
     private String microship;
+    @NotBlank
     private String raca;
     @Enumerated(EnumType.STRING)
+    @NotBlank
     private SexoPet sexo;
     private String pelagemCor;
     @NotNull
