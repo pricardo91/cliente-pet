@@ -34,24 +34,24 @@ public class ClienteController implements ClienteAPI {
 
     @Override
     public ClienteDetalhadoResponse getClienteId(UUID idCliente) {
-        log.info("[start] {} - getClienteId", getClass().getSimpleName());
+        log.info("[inicia] {} - getClienteId", getClass().getSimpleName());
         ClienteDetalhadoResponse clienteDetalhado = clienteService.buscaCliente(idCliente);
-        log.info("[end] {} - getClienteId", getClass().getSimpleName());
+        log.info("[finaliza] {} - getClienteId", getClass().getSimpleName());
         return clienteDetalhado;
     }
 
     @Override
     public void deleteClienteId(UUID idCliente) {
-        log.info("[start] {} - deleteClienteId", getClass().getSimpleName());
+        log.info("[inicia] {} - deleteClienteId", getClass().getSimpleName());
         clienteService.deletaClientePorId(idCliente);
-        log.info("[end] {} - deleteClienteId", getClass().getSimpleName());
+        log.info("[finaliza] {} - deleteClienteId", getClass().getSimpleName());
     }
 
     @Override
     public void atualizaCliente(UUID idCliente, ClienteUpdateRequest clienteUpdateRequest) {
-        log.info("[start] {} - atualizaCliente", getClass().getSimpleName());
+        log.info("[inicia] {} - atualizaCliente", getClass().getSimpleName());
         clienteService.patchAtualizaCliente(idCliente, clienteUpdateRequest);
-        log.info("[end] {} - atualizaCliente", getClass().getSimpleName());
+        log.info("[finaliza] {} - atualizaCliente", getClass().getSimpleName());
     }
 
 
