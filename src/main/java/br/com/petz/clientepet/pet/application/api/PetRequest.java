@@ -8,7 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Value
 public class PetRequest {

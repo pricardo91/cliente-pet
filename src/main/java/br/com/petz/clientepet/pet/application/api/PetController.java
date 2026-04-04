@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -17,8 +18,15 @@ public class PetController implements PetAPI {
     @Override
     public PetResponse postPet(UUID idCliente, PetRequest petRequest) {
         log.info("[inicia] {} - postPet", getClass().getSimpleName());
-        PetResponse pet = petService.criaPet(idCliente, petRequest);
+        PetResponse petResponse = petService.criaPet(idCliente, petRequest);
         log.info("[finaliza] {} - postPet", getClass().getSimpleName());
-        return pet;
+        return petResponse;
+    }
+
+    @Override
+    public List<PetListResponse> getTodosPets() {
+        log.info("[inicia] {} - getTodosPets", getClass().getSimpleName());
+        log.info("[finaliza] {} - getTodosPets", getClass().getSimpleName());
+        return List.of();
     }
 }
