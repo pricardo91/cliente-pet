@@ -31,7 +31,7 @@ public class PetApplicationService implements PetService{
     }
 
     @Override
-    public List<PetListResponse> buscaTodosPets() {
+    public List<PetListResponse> buscaTodosPets(UUID idCliente) {
         log.info("[inicia] {} - buscaTodosPets", getClass().getSimpleName());
         log.info("[finaliza] {} - buscaTodosPets", getClass().getSimpleName());
         return List.of();
