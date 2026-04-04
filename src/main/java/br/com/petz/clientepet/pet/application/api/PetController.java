@@ -26,7 +26,8 @@ public class PetController implements PetAPI {
     @Override
     public List<PetListResponse> getTodosPets() {
         log.info("[inicia] {} - getTodosPets", getClass().getSimpleName());
+        List<PetListResponse> pets =  petService.buscaTodosPets();
         log.info("[finaliza] {} - getTodosPets", getClass().getSimpleName());
-        return List.of();
+        return pets;
     }
 }
