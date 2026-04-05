@@ -1,8 +1,10 @@
 package br.com.petz.clientepet.pet.application.api;
 
+import br.com.petz.clientepet.pet.domain.Pet;
 import br.com.petz.clientepet.pet.domain.Porte;
 import lombok.Value;
 
+import java.util.List;
 import java.util.UUID;
 
 @Value
@@ -11,4 +13,9 @@ public class PetListResponse {
     private String nomePet;
     private Porte porte;
     private String raca;
+
+    public static List<PetListResponse> converte(List<Pet> listaPets) {
+
+        return null;
+    }
 }

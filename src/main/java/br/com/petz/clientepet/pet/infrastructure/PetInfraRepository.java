@@ -1,12 +1,14 @@
 package br.com.petz.clientepet.pet.infrastructure;
 
-import br.com.petz.clientepet.pet.application.api.PetResponse;
 import br.com.petz.clientepet.pet.application.repository.PetRepository;
 import br.com.petz.clientepet.pet.domain.Pet;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.UUID;
 
 @Repository
 @Slf4j
@@ -22,5 +24,12 @@ public class PetInfraRepository implements PetRepository {
         petSpringJpaRepository.save(pet);
         log.info("[finaliza] - {} - salvaPet", getClass().getSimpleName());
         return pet;
+    }
+
+    @Override
+    public List<Pet> buscaTodosPets(UUID idCliente) {
+        log.info("[inicia] - {} - buscaTodosPets", getClass().getSimpleName());
+        log.info("[finaliza] - {} - buscaTodosPets", getClass().getSimpleName());
+        return List.of();
     }
 }

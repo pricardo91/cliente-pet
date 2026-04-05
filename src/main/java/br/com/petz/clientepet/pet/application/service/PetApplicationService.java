@@ -16,7 +16,7 @@ import java.util.UUID;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class PetApplicationService implements PetService{
+public class PetApplicationService implements PetService {
 
     public final ClienteService clienteService;
     public final PetRepository petRepository;
@@ -33,7 +33,11 @@ public class PetApplicationService implements PetService{
     @Override
     public List<PetListResponse> buscaTodosPets(UUID idCliente) {
         log.info("[inicia] {} - buscaTodosPets", getClass().getSimpleName());
+
+        clienteService.buscaCliente(idCliente);
+
+        List<Pet> listaPets = petRepository.buscaTodosPets(idCliente);
         log.info("[finaliza] {} - buscaTodosPets", getClass().getSimpleName());
-        return List.of();
+        return PetListResponse.converte(listaPets);
     }
 }
