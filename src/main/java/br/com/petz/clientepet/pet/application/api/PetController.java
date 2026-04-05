@@ -29,4 +29,11 @@ public class PetController implements PetAPI {
         log.info("[finaliza] {} - getTodosPets", getClass().getSimpleName());
         return pets;
     }
+
+    @Override
+    public PetResponse getPetsPorId(UUID idCliente, UUID idPet) {
+        log.info("[inicia] {} - getPetsPorId", getClass().getSimpleName());
+        log.info("[finaliza] {} - getPetsPorId", getClass().getSimpleName());
+        return null;
+    }
 }
