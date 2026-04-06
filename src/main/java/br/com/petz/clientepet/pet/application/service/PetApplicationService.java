@@ -25,8 +25,10 @@ public class PetApplicationService implements PetService {
     @Override
     public PetResponse criaPet(UUID idCliente, PetRequest petRequest) {
         log.info("[inicia] {} - criaPet", getClass().getSimpleName());
+
         clienteService.buscaCliente(idCliente);
         Pet pet = petRepository.salvaPet(new Pet(idCliente, petRequest));
+
         log.info("[finaliza] {} - criaPet", getClass().getSimpleName());
         return new PetResponse(pet.getIdPet());
     }
@@ -45,11 +47,17 @@ public class PetApplicationService implements PetService {
     @Override
     public PetResponseDetalhado buscaPetPorId(UUID idCliente, UUID idPet) {
         log.info("[inicia] {} - buscaPetPorId", getClass().getSimpleName());
-        clienteService.buscaCliente(idCliente);
 
+        clienteService.buscaCliente(idCliente);
         Pet pet = petRepository.buscaPetPorId(idPet);
 
         log.info("[finaliza] {} - buscaPetPorId", getClass().getSimpleName());
         return new PetResponseDetalhado(pet);
+    }
+
+    @Override
+    public void deletePetsPorId(UUID idCliente, UUID idPet) {
+        log.info("[inicia] {} - deletePetsPorId", getClass().getSimpleName());
+        log.info("[finaliza] {} - deletePetsPorId", getClass().getSimpleName());
     }
 }
