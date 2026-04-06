@@ -50,7 +50,7 @@ public class Pet {
         this.nomePet = petRequest.getNomePet();
         this.porte = petRequest.getPorte();
         this.tipo = petRequest.getTipo();
-        this.microchip = petRequest.getMicroship();
+        this.microchip = petRequest.getMicrochip();
         this.raca = petRequest.getRaca();
         this.sexo = petRequest.getSexo();
         this.pelagemCor = petRequest.getPelagemCor();

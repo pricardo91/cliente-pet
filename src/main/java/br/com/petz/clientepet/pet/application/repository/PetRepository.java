@@ -12,4 +12,6 @@ public interface PetRepository {
     List<Pet> buscaTodosPets(UUID idCliente);
 
     Pet buscaPetPorId(UUID idPet);
+
+    void deletePetsPorId(UUID idPet);
 }

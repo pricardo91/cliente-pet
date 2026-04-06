@@ -23,7 +23,9 @@ public class PetInfraRepository implements PetRepository {
     @Transactional
     public Pet salvaPet(Pet pet) {
         log.info("[inicia] - {} - salvaPet", getClass().getSimpleName());
+
         petSpringJpaRepository.save(pet);
+
         log.info("[finaliza] - {} - salvaPet", getClass().getSimpleName());
         return pet;
     }
@@ -31,7 +33,9 @@ public class PetInfraRepository implements PetRepository {
     @Override
     public List<Pet> buscaTodosPets(UUID idCliente) {
         log.info("[inicia] - {} - buscaTodosPets", getClass().getSimpleName());
+
         List<Pet> pets = petSpringJpaRepository.findAllByIdClienteTutor(idCliente);
+
         log.info("[finaliza] - {} - buscaTodosPets", getClass().getSimpleName());
         return pets;
     }
@@ -41,9 +45,20 @@ public class PetInfraRepository implements PetRepository {
         log.info("[inicia] - {} - buscaPetPorId", getClass().getSimpleName());
 
         Pet pet = petSpringJpaRepository.findById(idPet)
-                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "Pet não encontrado!", "ID do Pet não foi encontrado para o cliente em questão!"));
+                .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND,
+                        "Pet não encontrado!",
+                        "ID do Pet não foi encontrado para o cliente em questão!"));
 
         log.info("[finaliza] - {} - buscaPetPorId", getClass().getSimpleName());
         return pet;
+    }
+
+    @Override
+    public void deletePetsPorId(UUID idPet) {
+        log.info("[inicia] - {} - deletePetsPorId", getClass().getSimpleName());
+
+        petSpringJpaRepository.deleteById(idPet);
+
+        log.info("[finaliza] - {} - deletePetsPorId", getClass().getSimpleName());
     }
 }

@@ -45,4 +45,10 @@ public class PetController implements PetAPI {
         log.info("[finaliza] {} - deletePetsPorId", getClass().getSimpleName());
 
     }
+
+    @Override
+    public PetResponse patchPetsPorId(UUID idCliente, UUID idPet, PetUpdateRequest petRequest) {
+        log.info("[inicia] {} - patchPetsPorId", getClass().getSimpleName());
+        log.info("[finaliza] {} - patchPetsPorId", getClass().getSimpleName());
+    }
 }

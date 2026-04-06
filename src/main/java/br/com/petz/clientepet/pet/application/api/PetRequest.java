@@ -16,7 +16,7 @@ public class PetRequest {
     private Porte porte;
     @NotNull
     private TipoPet tipo;
-    private String microship;
+    private String microchip;
     @NotBlank
     private String raca;
     @NotNull
