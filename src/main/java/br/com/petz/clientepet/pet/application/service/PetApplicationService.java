@@ -4,6 +4,7 @@ import br.com.petz.clientepet.cliente.application.service.ClienteService;
 import br.com.petz.clientepet.pet.application.api.PetListResponse;
 import br.com.petz.clientepet.pet.application.api.PetRequest;
 import br.com.petz.clientepet.pet.application.api.PetResponse;
+import br.com.petz.clientepet.pet.application.api.PetResponseDetalhado;
 import br.com.petz.clientepet.pet.application.repository.PetRepository;
 import br.com.petz.clientepet.pet.domain.Pet;
 import lombok.RequiredArgsConstructor;
@@ -35,16 +36,20 @@ public class PetApplicationService implements PetService {
         log.info("[inicia] {} - buscaTodosPets", getClass().getSimpleName());
 
         clienteService.buscaCliente(idCliente);
-
         List<Pet> listaPets = petRepository.buscaTodosPets(idCliente);
+
         log.info("[finaliza] {} - buscaTodosPets", getClass().getSimpleName());
         return PetListResponse.converte(listaPets);
     }
 
     @Override
-    public PetResponse buscaPetPorId(UUID idCliente, UUID idPet) {
+    public PetResponseDetalhado buscaPetPorId(UUID idCliente, UUID idPet) {
         log.info("[inicia] {} - buscaPetPorId", getClass().getSimpleName());
+        clienteService.buscaCliente(idCliente);
+
+        Pet pet = petRepository.buscaPetPorId(idPet);
+
         log.info("[finaliza] {} - buscaPetPorId", getClass().getSimpleName());
-        return null;
+        return new PetResponseDetalhado(pet);
     }
 }
